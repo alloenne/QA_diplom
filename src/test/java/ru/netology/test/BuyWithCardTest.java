@@ -564,4 +564,18 @@ public class BuyWithCardTest {
         Assertions.assertNull(transactionId);
     }
 
+    @Test
+    void closeNotification() {
+        var cardNumber = DataHelper.getRandomCard();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidName();
+        var cvv = DataHelper.getValidCVC();
+        debitPage.fillOutFields(cardNumber, month, year, owner, cvv);
+        debitPage.errorNotificationForm();
+        debitPage.closeNotification();
+        debitPage.noNotificationForm();
+
+    }
+
 }

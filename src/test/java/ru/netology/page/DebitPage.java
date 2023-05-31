@@ -22,6 +22,7 @@ public class DebitPage {
     private SelenideElement successNotification = $(".notification_status_ok");
     private SelenideElement failNotification = $(".notification_status_error");
     private SelenideElement anyNotification = $(".notification");
+    private SelenideElement closeNotification = $$(".notification").last().$$("button[class*=notification__closer]").get(0);
     private SelenideElement verificationErrorNumber = $$(".input__inner").findBy(text("Номер карты")).$(".input__sub");
     private SelenideElement verificationErrorMonth = $$(".input__inner").findBy(text("Месяц")).$(".input__sub");
     private SelenideElement verificationErrorYear = $$(".input__inner").findBy(text("Год")).$(".input__sub");
@@ -51,6 +52,10 @@ public class DebitPage {
 
     public void anyNotificationForm() {
         anyNotification.shouldBe(visible, Duration.ofSeconds(15));
+    }
+
+    public void noNotificationForm() {
+        anyNotification.shouldBe(not(visible));
     }
 
 
@@ -104,6 +109,10 @@ public class DebitPage {
 
     public void cvvFieldEmpty() {
         verificationErrorCVV.shouldBe(visible).shouldHave(text("Поле обязательно для заполнения"));
+    }
+
+    public void closeNotification() {
+        closeNotification.click();
     }
 
 
