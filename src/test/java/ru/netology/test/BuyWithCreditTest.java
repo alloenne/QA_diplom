@@ -563,4 +563,18 @@ public class BuyWithCreditTest {
         Assertions.assertNull(bankId);
     }
 
+    @Test
+    void closeNotification() {
+        var cardNumber = DataHelper.getRandomCard();
+        var month = DataHelper.getValidMonth();
+        var year = DataHelper.getValidYear();
+        var owner = DataHelper.getValidName();
+        var cvv = DataHelper.getValidCVC();
+        creditPage.fillOutFields(cardNumber, month, year, owner, cvv);
+        creditPage.errorNotificationForm();
+        creditPage.closeNotification();
+        creditPage.noNotificationForm();
+
+    }
+
 }
